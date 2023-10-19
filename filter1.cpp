@@ -1,9 +1,17 @@
+// FCAI – OOP Programming – 2023 - Assignment 1
+// Program Name:               Black_and_White_Image.cpp
+// Last Modification Date:      07/09/2023
+// Author1 and ID and Group:    Nour El-dien Mohamed Rabie - 20220364
+// Author2 and ID and Group:    ahmed mahmoud hasaneen - 20220039
+// Author3 and ID and Group:    mohamed mostafa shaheen - 20221131
+// Teaching Assistant:         Dr.Mohamed El-Ramly
+// Purpose:                     it produces another version of the image that is black and white
+//_________________________________________
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include <cmath>
 #include "bmplib.cpp"
-
 using namespace std;
 unsigned char image[SIZE][SIZE];
 
@@ -43,26 +51,16 @@ void saveImage()
 //_________________________________________
 void doSomethingForImage()
 {
-    for (int i = 1; i < SIZE; i++)
+    for (int i = 0; i < SIZE; i++)
     {
-        for (int j = 1; j < SIZE; j++)
+        for (int j = 0; j < SIZE; j++)
         {
-            // Calculate the average of the surrounding pixels (including the current pixel)
-            int sum = 0;
-            for (int x = -1; x <= 1; x++)
-            {
-                for (int y = -1; y <= 1; y++)
-                {
-                    sum += image[i + x][j + y];
-                }
-            }
-            image[i][j] = sum / 9; // Divide by 9 to get the average
 
-            // Set the boundary pixels to the original image values
-            image[0][j] = image[0][j];
-            image[i - 255][j] = image[i - 255][j];
-            image[i][0] = image[i][0];
-            image[i][j - 255] = image[i][j - 255];
+            // the program checks if pixel level is above average or not to make all pixels ether 0 or 255
+            if (image[i][j] > 127)
+                image[i][j] = 255;
+            else
+                image[i][j] = 0;
         }
     }
 }
